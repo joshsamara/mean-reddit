@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/joshsamara/mean-reddit/issues"
   },
-  "homepage": "https://github.com/joshsamara/mean-reddit"
+  "homepage": "https://github.com/joshsamara/mean-reddit",
+  "dependencies": {
+    "body-parser": "^1.12.3",
+    "express": "^4.12.3"
+  }
 }
