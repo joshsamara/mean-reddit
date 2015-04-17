@@ -1,0 +1,19 @@
+{
+  "name": "mean-reddit",
+  "version": "1.0.0",
+  "description": "Reddit rebuilt from scratch with the MEAN stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshsamara/mean-reddit"
+  },
+  "author": "Josh Samara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshsamara/mean-reddit/issues"
+  },
+  "homepage": "https://github.com/joshsamara/mean-reddit"
+}
