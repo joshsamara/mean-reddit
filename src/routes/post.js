@@ -13,8 +13,15 @@ module.exports = function(app, models){
 
     app.post('/api/post/', function(req, res) {
         post = models.Post(req.body);
-        post.save();
-        res.json(post);
+        post.save(function(err, data){
+            if (err){
+                res.status('400');
+                res.json(err);
+            } else{
+                res.json(data);
+            }
+
+        });
     });
 
     app.get('/api/post/:id', function(req, res) {

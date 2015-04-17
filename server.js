@@ -1,12 +1,13 @@
 // Setup the app
 var express = require('express');
 var app = express();
+
+// Keep our models here so we can pass them around
 var models = {};
 
 // Logging module
 var morgan = require('morgan');
 app.use(morgan('combined'));
-
 
 // We're going to need thise
 var bodyParser = require('body-parser');
@@ -14,7 +15,10 @@ app.use(bodyParser.json());
 
 // Load our db config
 db = require('./src/db');
+models.Group = require('./src/models/group');
+models.User = require('./src/models/user');
 models.Post = require('./src/models/post');
+models.Comment = require('./src/models/comment');
 
 // Load our routes
 require('./src/routes/post')(app, models);
