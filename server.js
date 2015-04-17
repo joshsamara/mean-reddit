@@ -15,13 +15,16 @@ app.use(bodyParser.json());
 
 // Load our db config
 db = require('./src/db');
-models.Group = require('./src/models/group');
 models.User = require('./src/models/user');
+models.Group = require('./src/models/group');
 models.Post = require('./src/models/post');
 models.Comment = require('./src/models/comment');
 
 // Load our routes
+require('./src/routes/user')(app, models);
+require('./src/routes/group')(app, models);
 require('./src/routes/post')(app, models);
+require('./src/routes/comment')(app, models);
 
 // Our static files
 app.use(express.static(__dirname + '/public'));
