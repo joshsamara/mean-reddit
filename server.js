@@ -3,6 +3,11 @@ var express = require('express');
 var app = express();
 var models = {};
 
+// Logging module
+var morgan = require('morgan');
+app.use(morgan('combined'));
+
+
 // We're going to need thise
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
