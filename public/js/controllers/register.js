@@ -6,7 +6,7 @@ angular.module("MainApp").controller('RegisterController', ['$scope', '$http', '
             $http.post("/register", form).success(function(response){
                 $scope.regerror = null;
                 userFactory.set(response);
-                $scope.refreshUser()
+                $scope.refreshUser();
                 $location.path('/');
             }).error(function(response){
                 $scope.regerror = "Invalid username or password.";

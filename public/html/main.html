@@ -10,7 +10,7 @@
         </div>
         <div ng-show="user && group">
             <p>Controls:</p>
-            <button class="btn btn-primary">Post <i class="fa fa-file-text"></i></button>
+            <a ng-href="#/group/{{group.name}}/new" class="btn btn-primary">Post <i class="fa fa-file-text"></i></a>
             <button class="btn btn-success" ng-show="can_subscribe" ng-click="subscribe()">Subscribe <i class="fa fa-plus-circle"></i></button>
             <button class="btn btn-warning" ng-show="can_unsubscribe" ng-click="unsubscribe()">Unsubscribe <i class="fa fa-minus-circle"></i></button>
         </div>

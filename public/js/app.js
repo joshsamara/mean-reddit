@@ -15,6 +15,14 @@ app.config(["$routeProvider",
                 templateUrl: 'main.html',
                 controller: 'GroupController'
             }).
+            when('/group/:groupName/new', {
+                templateUrl: 'newPost.html',
+                controller: 'NewPostController'
+            }).
+            when('/post/:postId', {
+                templateUrl: 'post.html',
+                controller: 'PostController'
+            }).
             when('/register', {
                 templateUrl: 'register.html',
                 controller: 'RegisterController'
@@ -30,7 +38,7 @@ app.config(["$routeProvider",
 
 // Used to share the current user between controllers
 app.factory('userFactory', function(){
-    var user = null
+    var user = null;
     var userService = {};
 
     userService.set = function(newUser) {
@@ -42,4 +50,4 @@ app.factory('userFactory', function(){
     };
 
     return userService;
-})
+});
