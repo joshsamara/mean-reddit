@@ -31,6 +31,10 @@ app.config(["$routeProvider",
                 templateUrl: 'register.html',
                 controller: 'RegisterController'
             }).
+            when('/search', {
+                templateUrl: 'search.html',
+                controller: 'SearchController'
+            }).
             when('/404', {
                 templateUrl: '404.html',
             }).

@@ -40,7 +40,6 @@ angular.module("MainApp").controller('ProfileController', ['$scope', '$http', '$
             return function() {
                 $http.get("/api/user/" + $scope.profileUser._id + "/" + suffix).success(function(response) {
                     loggedUser = response;
-                    console.log(loggedUser.friends);
                     userFactory.set(loggedUser);
                     $scope.refreshUser();
                     setSubscribed(loggedUser);

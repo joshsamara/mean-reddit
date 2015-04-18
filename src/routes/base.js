@@ -46,7 +46,6 @@ base.getByName = function(model, field){
         var val = req.params.name;
         var query = {};
         query[field] = val;
-        console.log(query);
         model.findOne(query, function(err, data){
             if (err || !data) {
                 res.status(404);

@@ -1,0 +1,50 @@
+<div class="container">
+    <h1>Results for search: "{{term}}"</h1>
+    <div class="well">
+      <label>Enter text to update search results:</label>
+      <input class="form-control"
+      type="text"
+      placeholder="Enter text to search"
+      ng-model="term"
+      ng-model-options="{ debounce: 300 }"
+      ng-change="searchAll()"/>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-4 well">
+            <h2 class="customHeader"><i class="fa fa-file-text"></i> Posts</h2>
+            <div ng-repeat="post in posts">
+                <div class="searchResult">
+                    <p><a ng-href="#/post/{{post._id}}"><span class="lead">{{post.title}}</span></a></p>
+                    <div><small>Group:</small> <span group-name group-id="post.group"></span></div>
+                    <div><small>Submitter:</small> <span user-name user-id="post.user"></span></div>
+                </div>
+            </div>
+            <div class="searchResult lead" ng-show="!posts.length">
+                No Posts Found
+            </div>
+        </div>
+        <div class="col-md-4 well">
+            <h2 class="customHeader"><i class="fa fa-users"></i> Groups</h2>
+            <div ng-repeat="group in groups">
+                <div class="searchResult">
+                    <p><a ng-href="#/group/{{group.name}}"><span class="lead">{{group.name}}</span></a></p>
+                    <div><small>Owner:</small> <span user-name user-id="group.owner"></span></div>
+                </div>
+            </div>
+            <div class="searchResult lead" ng-show="!groups.length">
+                No Groups Found
+            </div>
+        </div>
+        <div class="col-md-4 well">
+            <h2 class="customHeader"><i class="fa fa-user"></i> Users</h2>
+            <div ng-repeat="user in users">
+                <div class="searchResult">
+                    <p><a ng-href="#/profile/{{user.username}}"><span class="lead">{{user.username}}</span></a></p>
+                </div>
+            </div>
+            <div class="searchResult lead" ng-show="!users.length">
+                No Users Found
+            </div>
+        </div>
+    </div>
+</div>
