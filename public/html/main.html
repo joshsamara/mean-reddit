@@ -22,4 +22,37 @@
             <a ng-href="#/group/new" class="btn btn-success">New Group <i class="fa fa-plus-circle"></i></a>
         </div>
     </div>
+
+    <div>
+        <h1><i class="fa fa-file-text"></i> Posts</h1>
+        <div ng-show="!posts.length" class="well lead"><p>No posts found!</p></div>
+        <table ng-show="posts.length" class="table table-striped lead">
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Poster</th>
+                    <th>Posted</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="post in posts">
+                    <td >{{post.score}}</td>
+                    <td class="text-capitalize">{{post.title}}</td>
+                    <td>
+                        <span ng-show="post.link_post"><i class="fa fa-link"></i></span>
+                        <span ng-show="!post.link_post"><i class="fa fa-pencil"></i></span>
+                    </td>
+                    <td><span user-name user-id="post.user"></span></td>
+                    <td>{{post.created | date:'short'}}</td>
+                    <td>
+                        <a class="btn btn-primary" ng-href="http://{{post.link}}" ng-show="post.link_post"><i class="fa fa-external-link"></i></a>
+                        <a class="btn btn-default" ng-href="#/post/{{post._id}}"><i class="fa fa-comments"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

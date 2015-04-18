@@ -55,3 +55,36 @@ app.factory('userFactory', function(){
 
     return userService;
 });
+
+// Directives to translate our foreign keys
+app.directive("userName", ['$http', function($http) {
+  return {
+    template: "<span>{{name}}</span>",
+    scope: {
+      userId: "="
+    },
+    link: function(scope) {
+      $http.get("/api/user/" + scope.userId).then(function(result) {
+        scope.name = result.data.username;
+      }, function(err) {
+        scope.name = "unknown";
+      });
+    }
+  };
+}]);
+
+app.directive("groupName", ['$http', function($http) {
+  return {
+    template: "<span>{{name}}</span>",
+    scope: {
+      groupId: "="
+    },
+    link: function(scope) {
+      $http.get("/api/group/" + scope.groupId).then(function(result) {
+        scope.name = result.data.name;
+      }, function(err) {
+        scope.name = "unknown";
+      });
+    }
+  };
+}]);

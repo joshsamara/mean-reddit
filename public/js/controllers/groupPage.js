@@ -33,6 +33,10 @@ angular.module("MainApp").controller('GroupController', ['$scope', '$http', '$ro
             $location.path('/404');
         });
 
+        // Get our posts
+        $http.get("api/group/" + groupName + "/posts").success(function(response){
+            $scope.posts = response;
+        });
 
         $scope.deleteGroup = function(){
             if ($scope.owner){

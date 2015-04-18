@@ -24,7 +24,25 @@ module.exports = function(app, models){
     app.post('/api/group/many', base.getmany(Group));
     app.get('/api/group/:id', base.getone(Group));
     app.delete('/api/group/:id', base.delete(Group));
-
+    app.get('/api/group/:name/posts', function(req, res){
+        var name = req.params.name;
+        Group.findOne({ name: name }, function(err, data){
+            if (err || !data){
+                res.status(400);
+                res.json({"message": "Unable to find group"});
+            } else {
+                models.Post.find({ 'group': data._id }, function(err, data){
+                    if (err){
+                        res.status(400);
+                        res.json(err);
+                    } else {
+                        data = data.sort([['score', 'descending']]);
+                        res.json(data);
+                    }
+                });
+            }
+        });
+    });
     // Find by name
     app.get('/api/group/name/:name', base.getByName(Group, 'name'));
 
