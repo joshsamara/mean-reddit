@@ -24,7 +24,7 @@ base.getall = function(model){
 // Get many, requires a list of IDs in the body
 base.getmany = function(model){
     return function(req, res){
-        var ids = req.body.ids
+        var ids = req.body.ids;
         model.find({
             '_id': { $in: ids }
         }, function(err, data){
@@ -79,6 +79,50 @@ base.delete = function(model){
         });
     };
 };
+
+// Abstracted add to user for things like friending and subscribing
+base.addToUser = function(model, userField){
+    return function(req, res) {
+        // We require an id in the params
+        var id = req.params.id;
+        model.findById(id, function(err, data){
+            if (err || !data) {
+                res.status(404);
+                res.json({"message": "Object with that id doesn't exist"});
+            } else {
+                if (req.user[userField].indexOf(id) === -1){
+                    req.user[userField].push(id);
+                    req.user.save();
+                }
+                res.status(200);
+                res.json(req.user);
+            }
+        });
+    };
+};
+
+// Inverse of the previous method
+base.removeFromUser = function(model, userField){
+    return function(req, res) {
+        // We require an id in the params
+        var id = req.params.id;
+        model.findById(id, function(err, data){
+            if (err || !data) {
+                res.status(404);
+                res.json({"message": "Group with that id doesn't exist"});
+            } else {
+                var index = req.user.groups.indexOf(id);
+                if (index != -1){
+                    req.user[userField].splice(index, 1);
+                    req.user.save();
+                }
+                res.status(200);
+                res.json(req.user);
+            }
+        });
+    };
+};
+
 
 base.auth = function(req, res, next) {
     if (!req.isAuthenticated()){

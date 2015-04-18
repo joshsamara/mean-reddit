@@ -5,6 +5,7 @@ module.exports = function(app, models, passport){
     // Restful routes
     app.get('/api/user', base.getall(User));
     app.get('/api/user/:id', base.getone(User));
+    app.post('/api/user/many', base.getmany(User));
     app.delete('/api/user/:id', base.delete(User));
 
     app.post("/login", passport.authenticate('local'), function(req, res) {
