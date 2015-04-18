@@ -2,7 +2,7 @@
 angular.module("MainApp").controller('GroupController', ['$scope', '$http', '$routeParams', '$location', 'userFactory',
     function($scope, $http, $routeParams, $location, userFactory) {
         var groupName = $routeParams.groupName;
-        var user = userFactory.get()
+        var user = userFactory.get();
         $scope.can_subscribe = false;
 
 
@@ -28,23 +28,18 @@ angular.module("MainApp").controller('GroupController', ['$scope', '$http', '$ro
         });
 
 
-        // Subscribe to this group
-        $scope.subscribe = function(){
-            $http.get("/api/group/" + $scope.group._id + "/subscribe").success(function(response) {
-                user = response;
-                userFactory.set(user);
-                $scope.refreshUser();
-                userCheck(user);
-            });
+        function editSubscription(suffix){
+            return function() {
+                $http.get("/api/group/" + $scope.group._id + "/" + suffix).success(function(response) {
+                    user = response;
+                    userFactory.set(user);
+                    $scope.refreshUser();
+                    userCheck(user);
+                });
+            };
         }
 
-        // Unsubscribe from this group
-        $scope.unsubscribe = function(){
-            $http.get("/api/group/" + $scope.group._id + "/unsubscribe").success(function(response) {
-                user = response;
-                userFactory.set(user);
-                $scope.refreshUser();
-                userCheck(user);
-            });
-        }
+        // Subscribe to this group
+        $scope.subscribe = editSubscription("subscribe");
+        $scope.unsubscribe = editSubscription("unsubscribe");
 }]);
