@@ -59,7 +59,7 @@ app.factory('userFactory', function(){
 // Directives to translate our foreign keys
 app.directive("userName", ['$http', function($http) {
   return {
-    template: "<span>{{name}}</span>",
+    template: "<a ng-href='#/profile/{{name}}'><span>{{name}}</span></a>",
     scope: {
       userId: "="
     },
@@ -75,7 +75,7 @@ app.directive("userName", ['$http', function($http) {
 
 app.directive("groupName", ['$http', function($http) {
   return {
-    template: "<span>{{name}}</span>",
+    template: "<a ng-href='#/group/{{name}}'><span>{{name}}</span></a>",
     scope: {
       groupId: "="
     },
