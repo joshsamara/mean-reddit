@@ -109,9 +109,9 @@ base.removeFromUser = function(model, userField){
         model.findById(id, function(err, data){
             if (err || !data) {
                 res.status(404);
-                res.json({"message": "Group with that id doesn't exist"});
+                res.json({"message": "Object with that id doesn't exist"});
             } else {
-                var index = req.user.groups.indexOf(id);
+                var index = req.user[userField].indexOf(id);
                 if (index != -1){
                     req.user[userField].splice(index, 1);
                     req.user.save();
