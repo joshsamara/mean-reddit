@@ -14,7 +14,7 @@ module.exports = function(app, models){
                 res.status(201);
                 // Auto subscribe to groups you make
                 req.user.groups.push(data._id);
-                req.user.save(function(err, data){
+                req.user.save(function(err, userdata){
                     res.json(data);
                 });
             }

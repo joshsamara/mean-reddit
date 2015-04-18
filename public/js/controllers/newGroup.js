@@ -12,8 +12,9 @@ angular.module("MainApp").controller('NewGroupController', ['$scope', '$http', '
             form.owner = user._id;
             $http.post("/api/group", form).success(function(response) {
                 $scope.grouperror = null;
+                var redirect_url = '/group/' + response.name;
                 $scope.refreshUser(true, function(){
-                    $location.path('/group/' + response.name);
+                    $location.path(redirect_url);
                 });
             }).error(function(response){
                 $scope.grouperror = "Invalid form.";
