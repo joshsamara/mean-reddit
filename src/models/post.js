@@ -7,6 +7,7 @@ var PostSchema = new Schema({
     text: { type: String },
     group: { type: Schema.Types.ObjectId, ref: 'Group', required: true },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    score: { type: Number, required: true, default: 0},
     created: { type: Date, default: Date.now, required: true }
 });
 

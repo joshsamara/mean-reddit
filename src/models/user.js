@@ -9,7 +9,8 @@ var UserSchema = new Schema({
     password: String,
     groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
     friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-    created: { type: Date, default: Date.now, required: true }
+    created: { type: Date, default: Date.now, required: true },
+    roles: [String]
 });
 
 UserSchema.plugin(passportLocalMongoose);

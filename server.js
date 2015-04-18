@@ -31,17 +31,21 @@ models.User = require('./src/models/user');
 models.Group = require('./src/models/group');
 models.Post = require('./src/models/post');
 models.Comment = require('./src/models/comment');
+models.PVote = require('./src/models/pvote');
+models.CVote = require('./src/models/cvote');
 
 // Setup our login strategy
 passport.use(new LocalStrategy(models.User.authenticate()));
 passport.serializeUser(models.User.serializeUser());
 passport.deserializeUser(models.User.deserializeUser());
 
-// Load our routes
+// Load our model-specific routes
 require('./src/routes/user')(app, models, passport);
 require('./src/routes/group')(app, models);
 require('./src/routes/post')(app, models);
 require('./src/routes/comment')(app, models);
+require('./src/routes/pvote')(app, models);
+require('./src/routes/cvote')(app, models);
 
 // Our static files
 app.use(express.static(__dirname + '/public'));
