@@ -8,16 +8,16 @@ module.exports = function(app, models, passport){
     app.delete('/api/user/:id', base.delete(User));
 
     app.post("/login", passport.authenticate('local'), function(req, res) {
-        res.redirect('/');
+        res.json(req.user);
     });
 
     app.get("/logout", function(req, res) {
         req.logout();
-        res.json({ message: "Logged out" });
+        res.send(0);
     });
 
     app.get("/loggedin", function(req, res){
-        res.send(req.isAuthenticated() ? req.user : '0');
+        res.send(req.isAuthenticated() ? req.user : 0);
     });
 
     app.post('/register', function(req, res) {
