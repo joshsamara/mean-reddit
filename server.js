@@ -24,7 +24,15 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 // Load our db config
-var db = require('./src/db');
+var mongoose = require('mongoose');
+db_url = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/readit';
+mongoose.connect(db_url);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    console.log("mongodb connection open");
+});
+
 
 // Keep our models here so we can pass them around
 var models = {};
