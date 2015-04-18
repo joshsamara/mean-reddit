@@ -3,27 +3,49 @@
     <div class="page-header">
       <h1 ng-show="profileOwner">Your Profile!</h1>
       <h1 ng-show="!profileOwner">{{profileUser.username}}'s Profile</h1>
+      <p ng-show="friended">You've friended this user!</p>
+      <p ng-show="!friended">You haven't friended this user.</p>
     </div>
     <div ng-show="!user">
       <p>Login to to friend this user.</p>
     </div>
     <div ng-show="user && !profileOwner">
       <p>Controls:</p>
-      <button class="btn btn-success" ng-click="unsubscribe()">Add Friend <i class="fa fa-plus-circle"></i></button>
-      <button class="btn btn-warning" ng-click="unsubscribe()">Remove Friend <i class="fa fa-minus-circle"></i></button>
+      <button class="btn btn-success" ng-click="friend()" ng-show="!friended">Add Friend <i class="fa fa-plus-circle"></i></button>
+      <button class="btn btn-warning" ng-click="unfriend()" ng-show="friended">Remove Friend <i class="fa fa-minus-circle"></i></button>
     </div>
   </div>
 
   <div ng-show="profileOwner">
     <h2><i class="fa fa-bars"></i> Your Subscriptions:</h2>
-    <div ng-show="!subscribed">
-      <p>You have no subscriptions!</p>
+    <div ng-show="!subscribed.length">
+      <div class="well lead">
+        <p>You have no subscriptions!</p>
+      </div>
     </div>
-    <ul class="list-group">
+    <ul class="list-group" ng-show="subscribed.length">
       <span ng-repeat="group in subscribed">
         <a ng-href="#/group/{{group.name}}">
           <li class="list-group-item lead text-capitalize">
           {{group.name}}
+          </li>
+        </a>
+      </span>
+    </ul>
+  </div>
+
+  <div ng-show="profileOwner">
+    <h2><i class="fa fa-bars"></i> Your Friends:</h2>
+    <div ng-show="!friends.length">
+      <div class="well lead">
+        <p>You haven't friended anyone yet!</p>
+      </div>
+    </div>
+    <ul class="list-group" ng-show="friends.length">
+      <span ng-repeat="user in friends">
+        <a ng-href="#/profile/{{user._id}}">
+          <li class="list-group-item lead text-capitalize">
+            {{user.username}}
           </li>
         </a>
       </span>

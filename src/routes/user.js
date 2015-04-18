@@ -14,7 +14,7 @@ module.exports = function(app, models, passport){
 
     app.get("/logout", function(req, res) {
         req.logout();
-        res.sendStatus(200)
+        res.sendStatus(200);
     });
 
     app.get("/loggedin", function(req, res){
@@ -35,4 +35,8 @@ module.exports = function(app, models, passport){
                 }
             });
     });
+
+    // Friend users
+    app.get('/api/user/:id/friend', base.auth, base.addToUser(User, 'friends'));
+    app.get('/api/user/:id/unfriend', base.auth, base.removeFromUser(User, 'friends'));
 };
