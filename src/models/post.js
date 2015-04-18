@@ -22,4 +22,12 @@ PostSchema.pre('validate', function(next) {
     next();
 });
 
+// To make things easy, we always want links with http://
+re = /https?:\/\/.*/i;
+PostSchema.pre('save', function(next) {
+  if (this.link_post && !this.link.match(re)){
+    this.link = 'http://' + this.link;
+  }
+  next();
+});
 module.exports = mongoose.model('Post', PostSchema);
