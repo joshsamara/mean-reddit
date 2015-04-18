@@ -55,6 +55,7 @@ require('./src/routes/post')(app, models);
 require('./src/routes/comment')(app, models);
 require('./src/routes/pvote')(app, models);
 require('./src/routes/cvote')(app, models);
+require('./src/routes/search')(app, models);
 
 // Our static files
 app.use(express.static(__dirname + '/public/html'));
