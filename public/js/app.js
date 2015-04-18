@@ -1,6 +1,6 @@
 var app = angular.module("MainApp", ["ngRoute"]);
 
-angular.module("MainApp").config(["$routeProvider",
+app.config(["$routeProvider",
     function ($routeProvider){
         $routeProvider.
             when('/', {
@@ -11,6 +11,10 @@ angular.module("MainApp").config(["$routeProvider",
                 templateUrl: 'profile.html',
                 controller: 'ProfileController'
             }).
+            when('/register', {
+                templateUrl: 'register.html',
+                controller: 'RegisterController'
+            }).
             when('/404', {
                 templateUrl: '404.html',
             }).
@@ -18,3 +22,19 @@ angular.module("MainApp").config(["$routeProvider",
                 templateUrl: '404.html',
             });
 }]);
+
+
+app.factory('userFactory', function(){
+    var user = null
+    var userService = {};
+
+    userService.set = function(newUser) {
+        user = newUser;
+    };
+
+    userService.get = function() {
+        return user;
+    };
+
+    return userService;
+})
