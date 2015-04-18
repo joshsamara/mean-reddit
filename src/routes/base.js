@@ -44,7 +44,6 @@ base.create = function(model){
     };
 };
 
-
 // Delete a single thing, requires ID
 base.delete = function(model){
     return function(req, res) {
@@ -59,6 +58,14 @@ base.delete = function(model){
             }
         });
     };
+};
+
+base.auth = function(req, res, next) {
+    if (!req.isAuthenticated()){
+        res.send(401);
+    } else {
+        next();
+    }
 };
 
 module.exports = base;
