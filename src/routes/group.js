@@ -4,7 +4,23 @@ module.exports = function(app, models){
 
     // Restful routes
     app.get('/api/group', base.getall(Group));
-    app.post('/api/group', base.create(Group));
+    app.post('/api/group', base.auth, function(req, res){
+        new_item = Group(req.body);
+        new_item.save(function(err, data){
+            if (err) {
+                res.status(400);
+                res.json(err);
+            } else {
+                res.status(201);
+                // Auto subscribe to groups you make
+                req.user.groups.push(data._id);
+                req.user.save(function(err, data){
+                    res.json(data);
+                });
+            }
+    });
+
+    });
     app.post('/api/group/many', base.getmany(Group));
     app.get('/api/group/:id', base.getone(Group));
     app.delete('/api/group/:id', base.delete(Group));

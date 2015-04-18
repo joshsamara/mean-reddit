@@ -4,6 +4,8 @@
         <div class="page-header">
             <h1 ng-show="group"><span class="text-capitalize" ng-bind="group.name">Loading..</span> <small>Group Page</small></h1>
             <h1 ng-show="!group">Front Page!</h1>
+            <p ng-show="owner">You own this group.</p>
+            <p ng-show="groupOwner">{{groupOwner.username}} owns this group.</p>
         </div>
         <div ng-show="!user">
             <p>Login to to subscribe, post, and more!</p>
@@ -13,6 +15,7 @@
             <a ng-href="#/group/{{group.name}}/new" class="btn btn-primary">Post <i class="fa fa-file-text"></i></a>
             <button class="btn btn-success" ng-show="can_subscribe" ng-click="subscribe()">Subscribe <i class="fa fa-plus-circle"></i></button>
             <button class="btn btn-warning" ng-show="can_unsubscribe" ng-click="unsubscribe()">Unsubscribe <i class="fa fa-minus-circle"></i></button>
+            <button class="btn btn-danger" ng-show="owner" ng-click="deleteGroup()">Delete <i class="fa fa-trash"></i></button>
         </div>
         <div ng-show="user && !group">
             <p>Controls:</p>

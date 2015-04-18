@@ -6,15 +6,18 @@ angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'use
     function($scope, $http, userFactory, $route) {
 
         // Immediately check if we're already logged in
-        $scope.refreshUser = function(){
+        $scope.refreshUser = function(force, callback){
             $scope.user = userFactory.get();
-            if (!$scope.user){
+            if (force || !$scope.user){
                 $http.get("/loggedin").success(function(response){
                     $scope.user = response;
                     userFactory.set($scope.user);
+                    if (callback){
+                        callback();
+                    }
                 });
             }
-        }
+        };
 
         $scope.refreshUser();
         // Allow logging in
@@ -23,7 +26,7 @@ angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'use
                 $scope.error = null;
                 $scope.user = response;
                 userFactory.set($scope.user);
-                $route.reload()
+                $route.reload();
             }).error(function(response){
                 $scope.error = "Invalid username or password.";
             });
@@ -34,13 +37,13 @@ angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'use
             $http.get("/logout").success(function(response){
                 $scope.user = null;
                 userFactory.set($scope.user);
-                $scope.refreshUser()
-                $route.reload()
+                $scope.refreshUser();
+                $route.reload();
             }).error(function(response){
                 $scope.user = null;
                 userFactory.set($scope.user);
-                $scope.refreshUser()
-                $route.reload()
+                $scope.refreshUser();
+                $route.reload();
             });
         };
 }]);

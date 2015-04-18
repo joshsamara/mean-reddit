@@ -22,11 +22,25 @@ angular.module("MainApp").controller('GroupController', ['$scope', '$http', '$ro
         // Get our group
         $http.get("/api/group/name/" + groupName).success(function(response) {
             $scope.group = response;
+            $scope.owner = user && (user._id === $scope.group.owner);
             userCheck(user);
+            if (!$scope.owner){
+                $http.get("/api/user/" + $scope.group.owner).success(function(response){
+                    $scope.groupOwner = response;
+                });
+            }
         }).error(function(response){
             $location.path('/404');
         });
 
+
+        $scope.deleteGroup = function(){
+            if ($scope.owner){
+                $http.delete("/api/group/" + $scope.group._id).success(function(response) {
+                    $location.path('/');
+                });
+            }
+        };
 
         function editSubscription(suffix){
             return function() {
