@@ -33,7 +33,8 @@
                     <th>Title</th>
                     <th>Type</th>
                     <th>Poster</th>
-                    <th>Posted</th>
+                    <th>Submitted</th>
+                    <th ng-show="!group">Group</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -47,6 +48,7 @@
                     </td>
                     <td><span user-name user-id="post.user"></span></td>
                     <td>{{post.created | date:'short'}}</td>
+                    <th ng-show="!group"><span group-name group-id="post.group"></th>
                     <td>
                         <a class="btn btn-primary" ng-href="http://{{post.link}}" ng-show="post.link_post"><i class="fa fa-external-link"></i></a>
                         <a class="btn btn-default" ng-href="#/post/{{post._id}}"><i class="fa fa-comments"></i></a>

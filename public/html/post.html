@@ -1,1 +1,27 @@
-<h1>Post</h1>
+<div class="container">
+
+  <a ng-href="#/group/{{group.name}}">
+    <i class="fa fa-angle-double-left fa"></i>
+    Back to group:
+    <span class="text-capitalize" ng-if="group" ng-bind="group.name"></span>
+  </a>
+
+  <div class="jumbotron">
+    <div class="page-header">
+        <h1>
+            <span ng-show="post.link_post"><i class="fa fa-link"></i></span>
+            <span ng-show="!post.link_post"><i class="fa fa-pencil"></i></span>
+            <span class="text-capitalize" ng-bind="post.title"></span>
+        </h1>
+        <h4 ng-show="owner">You Posted This</h4>
+        <h4 ng-show="!owner">
+          Posted By: <a href="#/profile/{{poster.username}}">{{poster.username}}</a>
+        </h4>
+        {{post.created | date:'short'}}
+    </div>
+    <div>
+    <h2 ng-show="post.link_post">Link: <a ng-href="http://post.link"><span class="lead" ng-bind="post.link">N/A</span></a></h2>
+    <p ng-show="!post.link_post"><span ng-bind="post.text"></span><p>
+    </div>
+  </div>
+</div>
