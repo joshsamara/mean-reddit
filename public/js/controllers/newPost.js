@@ -18,10 +18,10 @@ angular.module("MainApp").controller('NewPostController', ['$scope', '$http', '$
             form.user = user._id;
             $http.get("/api/group/name/" + $scope.groupName).success(function(response) {
                 form.group = response._id;
-                $http.post("/api/post", form).success(function(response){
+                $http.post("/api/post", form).success(function(response) {
                     $scope.posterror = null;
                     $location.path('/post/' + response._id);
-                }).error(function(response){
+                }).error(function(response) {
                     $scope.posterror = "Invalid form.";
                 });
             });

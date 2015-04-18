@@ -11,6 +11,10 @@ app.config(["$routeProvider",
                 templateUrl: 'profile.html',
                 controller: 'ProfileController'
             }).
+            when('/group/new', {
+                templateUrl: 'newGroup.html',
+                controller: 'NewGroupController'
+            }).
             when('/group/:groupName', {
                 templateUrl: 'main.html',
                 controller: 'GroupController'

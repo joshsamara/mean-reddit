@@ -6,7 +6,7 @@
             <h1 ng-show="!group">Front Page!</h1>
         </div>
         <div ng-show="!user">
-            <p>Login to to subscribe and post!</p>
+            <p>Login to to subscribe, post, and more!</p>
         </div>
         <div ng-show="user && group">
             <p>Controls:</p>
@@ -16,7 +16,7 @@
         </div>
         <div ng-show="user && !group">
             <p>Controls:</p>
-            <button class="btn btn-success">New Group <i class="fa fa-plus-circle"></i></button>
+            <a ng-href="#/group/new" class="btn btn-success">New Group <i class="fa fa-plus-circle"></i></a>
         </div>
     </div>
 </div>

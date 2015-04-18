@@ -1,0 +1,13 @@
+<div class="container well">
+  <div class="page-header">
+      <h1>New Group: <small>Create a new group</small></h1>
+  </div>
+  <form>
+    <div class="form-group">
+      <label>Name*</label>
+      <input class="form-control" type="text" ng-model="groupForm.name" placeholder="Title"/>
+    </div>
+    <p class="help-inline text-danger" ng-show="grouperror" ng-bind="grouperror"></p>
+    <button class="btn btn-success" ng-click="create(groupForm)">Create!</button>
+  </form>
+</div>
