@@ -49,10 +49,13 @@ require('./src/routes/pvote')(app, models);
 require('./src/routes/cvote')(app, models);
 
 // Our static files
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/html'));
+app.use('/js', express.static(__dirname + '/public/js'));
+app.use('/css', express.static(__dirname + '/public/css'));
 
 // Open shift setup
 var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
+console.log("Serving on port " + port);
 app.listen(port, ip);
