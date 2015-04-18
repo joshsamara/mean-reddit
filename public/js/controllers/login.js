@@ -5,7 +5,6 @@
 angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'userFactory',
     function($scope, $http, userFactory) {
 
-        console.log("Running...")
         // Immediately check if we're already logged in
         $scope.refreshUser = function(){
             $scope.user = userFactory.get();
@@ -30,10 +29,15 @@ angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'use
         };
 
         // Allow logging out
-        $scope.logout = function(form) {
-            $http.get("/logout", form).success(function(response){
+        $scope.logout = function() {
+            $http.get("/logout").success(function(response){
                 $scope.user = null;
                 userFactory.set($scope.user);
+                $scope.refreshUser()
+            }).error(function(response){
+                $scope.user = null;
+                userFactory.set($scope.user);
+                $scope.refreshUser()
             });
         };
 }]);
