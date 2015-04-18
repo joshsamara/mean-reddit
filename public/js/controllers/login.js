@@ -35,10 +35,12 @@ angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'use
                 $scope.user = null;
                 userFactory.set($scope.user);
                 $scope.refreshUser()
+                $route.reload()
             }).error(function(response){
                 $scope.user = null;
                 userFactory.set($scope.user);
                 $scope.refreshUser()
+                $route.reload()
             });
         };
 }]);
