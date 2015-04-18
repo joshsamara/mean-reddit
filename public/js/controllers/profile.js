@@ -2,7 +2,7 @@
 angular.module("MainApp").controller('ProfileController', ['$scope', '$http', '$routeParams', '$location', 'userFactory',
     function($scope, $http, $routeParams, $location, userFactory) {
         // Get the requested user and currently logged in user
-        var userId = $routeParams.userId;
+        var userName = $routeParams.userName;
         var loggedUser = userFactory.get();
 
         // Go fetch things we want to display
@@ -19,8 +19,9 @@ angular.module("MainApp").controller('ProfileController', ['$scope', '$http', '$
         }
 
         // Make sure this user exists
-        $http.get("/api/user/" + userId).success(function(response){
+        $http.get("/api/user/name/" + userName).success(function(response){
             $scope.profileUser = response;
+            var userId = response._id;
 
             // Are we this user?
             $scope.profileOwner = loggedUser && (userId == loggedUser._id);

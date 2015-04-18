@@ -46,7 +46,7 @@
     </div>
     <ul class="list-group" ng-show="friends.length">
       <span ng-repeat="user in friends">
-        <a ng-href="#/profile/{{user._id}}">
+        <a ng-href="#/profile/{{user.username}}">
           <li class="list-group-item lead text-capitalize">
             {{user.username}}
           </li>

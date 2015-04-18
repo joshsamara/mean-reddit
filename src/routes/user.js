@@ -7,6 +7,8 @@ module.exports = function(app, models, passport){
     app.get('/api/user/:id', base.getone(User));
     app.post('/api/user/many', base.getmany(User));
     app.delete('/api/user/:id', base.delete(User));
+    // Find by name
+    app.get('/api/user/name/:name', base.getByName(User, 'username'));
 
     app.post("/login", passport.authenticate('local'), function(req, res) {
         res.json(req.user);

@@ -7,7 +7,7 @@ app.config(["$routeProvider",
                 templateUrl: 'main.html',
                 controller: 'MainController'
             }).
-            when('/profile/:userId', {
+            when('/profile/:userName', {
                 templateUrl: 'profile.html',
                 controller: 'ProfileController'
             }).

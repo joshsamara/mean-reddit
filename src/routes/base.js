@@ -41,6 +41,24 @@ base.getmany = function(model){
     };
 };
 
+base.getByName = function(model, field){
+    return function(req, res) {
+        var val = req.params.name;
+        var query = {};
+        query[field] = val;
+        console.log(query);
+        model.findOne(query, function(err, data){
+            if (err || !data) {
+                res.status(404);
+                res.json({"message": "Object with that name doesn't exist"});
+            } else {
+                res.json(data);
+            }
+        });
+    };
+
+};
+
 // Get a single thing, requires ID
 base.getone = function(model){
     return function(req, res) {

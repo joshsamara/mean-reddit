@@ -10,17 +10,7 @@ module.exports = function(app, models){
     app.delete('/api/group/:id', base.delete(Group));
 
     // Find by name
-    app.get('/api/group/name/:name', function(req, res) {
-        var name = req.params.name;
-        Group.findOne({ name: name }, function(err, data){
-            if (err || !data) {
-                res.status(404);
-                res.json({"message": "Group with that name doesn't exist"});
-            } else {
-                res.json(data);
-            }
-        });
-    });
+    app.get('/api/group/name/:name', base.getByName(Group, 'name'));
 
     // [Un]Subscribe to a group
     app.get('/api/group/:id/subscribe', base.auth, base.addToUser(Group, 'groups'));
