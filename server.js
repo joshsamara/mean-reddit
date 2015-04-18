@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // Setup the app
 var express = require('express');
 var app = express();
