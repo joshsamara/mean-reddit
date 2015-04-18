@@ -11,7 +11,7 @@
       <label for="password">Password</label>
       <input class="form-control" type="password" ng-model="registerForm.password" placeholder="Password"/>
     </div>
-    <p class="help-inline text-danger" ng-show="error" ng-bind="error"></p>
+    <p class="help-inline text-danger" ng-show="regerror" ng-bind="regerror"></p>
     <button class="btn btn-default" ng-click="register(registerForm)">Login</button>
   </form>
 </div>
