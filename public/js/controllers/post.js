@@ -1,6 +1,6 @@
 // Controller for viewing a post
-angular.module("MainApp").controller('PostController', ['$scope', '$http', 'userFactory', '$routeParams',
-    function($scope, $http, userFactory, $routeParams) {
+angular.module("MainApp").controller('PostController', ['$scope', '$http', 'userFactory', '$routeParams', '$location',
+    function($scope, $http, userFactory, $routeParams, $location) {
         var postId = $routeParams.postId;
         var user = userFactory.get();
         // Get our post
@@ -19,4 +19,15 @@ angular.module("MainApp").controller('PostController', ['$scope', '$http', 'user
             $location.path('/404');
         });
 
+        $scope.deletePost = function(){
+            if ($scope.owner){
+                $http.delete("/api/post/" + $scope.post._id).success(function(response) {
+                    if ($scope.group) {
+                        $location.path('/group/' + $scope.group.name);
+                    } else {
+                        $location.path('/');
+                    }
+                });
+            }
+        };
 }]);
