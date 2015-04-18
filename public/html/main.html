@@ -50,7 +50,7 @@
                     <td>{{post.created | date:'short'}}</td>
                     <td ng-show="!group"><span group-name group-id="post.group"></span</td>
                     <td>
-                        <a class="btn btn-primary" ng-href="http://{{post.link}}" ng-show="post.link_post"><i class="fa fa-external-link"></i></a>
+                        <a class="btn btn-primary" ng-href="{{post.link}}" ng-show="post.link_post"><i class="fa fa-external-link"></i></a>
                         <a class="btn btn-default" ng-href="#/post/{{post._id}}"><i class="fa fa-comments"></i></a>
                     </td>
                 </tr>

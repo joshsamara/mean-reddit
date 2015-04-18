@@ -20,7 +20,7 @@
         {{post.created | date:'short'}}
     </div>
     <div>
-    <h2 ng-show="post.link_post">Link: <a ng-href="http://post.link"><span class="lead" ng-bind="post.link">N/A</span></a></h2>
+        <h2 ng-show="post.link_post">Link: <a ng-href="{{post.link}}"><span class="lead" ng-bind="post.link">N/A</span></a></h2>
     <p ng-show="!post.link_post"><span ng-bind="post.text"></span><p>
     </div>
   </div>
