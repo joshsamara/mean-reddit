@@ -13,7 +13,7 @@ module.exports = function(app, models, passport){
 
     app.get("/logout", function(req, res) {
         req.logout();
-        res.send(0);
+        res.sendStatus(200)
     });
 
     app.get("/loggedin", function(req, res){

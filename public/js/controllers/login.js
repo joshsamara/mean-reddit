@@ -2,8 +2,8 @@
 // NOTE: Login is a parent to the other controllers.
 // If any other controller changes the currently logged in uers, they must run:
 // $scope.refreshUser()
-angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'userFactory',
-    function($scope, $http, userFactory) {
+angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'userFactory', '$route',
+    function($scope, $http, userFactory, $route) {
 
         // Immediately check if we're already logged in
         $scope.refreshUser = function(){
@@ -23,6 +23,7 @@ angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'use
                 $scope.error = null;
                 $scope.user = response;
                 userFactory.set($scope.user);
+                $route.reload()
             }).error(function(response){
                 $scope.error = "Invalid username or password.";
             });

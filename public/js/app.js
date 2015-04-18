@@ -11,6 +11,10 @@ app.config(["$routeProvider",
                 templateUrl: 'profile.html',
                 controller: 'ProfileController'
             }).
+            when('/group/:groupName', {
+                templateUrl: 'main.html',
+                controller: 'GroupController'
+            }).
             when('/register', {
                 templateUrl: 'register.html',
                 controller: 'RegisterController'
@@ -24,6 +28,7 @@ app.config(["$routeProvider",
 }]);
 
 
+// Used to share the current user between controllers
 app.factory('userFactory', function(){
     var user = null
     var userService = {};

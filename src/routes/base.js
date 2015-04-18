@@ -21,6 +21,26 @@ base.getall = function(model){
     };
 };
 
+// Get many, requires a list of IDs in the body
+base.getmany = function(model){
+    return function(req, res){
+        var ids = req.body.ids
+        model.find({
+            '_id': { $in: ids }
+        }, function(err, data){
+            if (err){
+                res.status(400);
+                res.json(err);
+            } else if (!data) {
+                res.status(404);
+                res.json({"message": "Objects with given ids do not exist"});
+            } else {
+                res.json(data);
+            }
+        });
+    };
+};
+
 // Get a single thing, requires ID
 base.getone = function(model){
     return function(req, res) {
@@ -62,7 +82,7 @@ base.delete = function(model){
 
 base.auth = function(req, res, next) {
     if (!req.isAuthenticated()){
-        res.send(401);
+        res.sendStatus(401);
     } else {
         next();
     }
