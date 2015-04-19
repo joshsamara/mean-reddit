@@ -8,10 +8,13 @@
 
   <div class="jumbotron">
     <div class="page-header">
+        <span class="score pull-right">{{post.score}}pts</span>
         <h1>
-            <span ng-show="post.link_post"><i class="fa fa-link"></i></span>
-            <span ng-show="!post.link_post"><i class="fa fa-pencil"></i></span>
             <span class="text-capitalize" ng-bind="post.title"></span>
+            <small>
+                <span ng-show="post.link_post"><i class="fa fa-link"></i></span>
+                <span ng-show="!post.link_post"><i class="fa fa-pencil"></i></span>
+            </small>
         </h1>
         <h4>
           <span ng-show="owner">You Posted This</span>
@@ -20,15 +23,18 @@
         </h4>
     </div>
 
-    <div ng-show="owner">
+    <div ng-show="user">
         <p>Controls:
-            <button class="btn btn-danger" ng-click="deletePost()">Delete <i class="fa fa-trash"></i></button>
+            <button class="btn btn-success" ng-click="upvote()" ng-show="vote.value != 1">Upvote <i class="fa fa-arrow-circle-up"></i></button>
+            <button class="btn btn-primary" ng-click="nullvote()" ng-show="vote && vote.value != 0">Undo Vote <i class="fa fa-undo"></i></button>
+            <button class="btn btn-danger" ng-click="downvote()" ng-show="vote.value != -1">Downvote <i class="fa fa-arrow-circle-down"></i></button>
+            <button class="btn btn-danger" ng-click="deletePost()" ng-show="owner">Delete <i class="fa fa-trash"></i></button>
         </p>
     </div>
 
-    <div class="content">
-        <h2 ng-show="post.link_post">Link: <a ng-href="{{post.link}}"><span class="lead" ng-bind="post.link">N/A</span></a></h2>
-        <p ng-show="!post.link_post"><span ng-bind="post.text"></span><p>
+    <div class="content lead">
+        <span ng-show="post.link_post">Link: <a ng-href="{{post.link}}"><span class="lead" ng-bind="post.link">N/A</span></a></span>
+        <span ng-show="!post.link_post"><span ng-bind="post.text"></span></span>
     </div>
   </div>
 

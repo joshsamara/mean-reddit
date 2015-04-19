@@ -70,6 +70,10 @@ footer {
   font-style: italic;
 }
 
+.jumbotron {
+  border: 1px solid #aaa;
+}
+
 .jumbotron .page-header {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -77,4 +81,13 @@ footer {
 
 .jumbotron .page-header h1 {
   margin-top: 0px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #999;
+}
+
+.score {
+  border: 1px solid #999;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 20px;
 }

@@ -20,7 +20,6 @@ angular.module("MainApp").controller('ProfileController', ['$scope', '$http', '$
 
         function getPosts(userId){
             $http.get("/api/user/" + userId + "/post").success(function(response){
-                console.log("LOADEd");
                 $scope.posts = response;
           });
         }

@@ -30,6 +30,32 @@ angular.module("MainApp").controller('PostController', ['$scope', '$http', 'user
         refreshComments();
 
 
+        // Get our current vote
+        if (user){
+            $http.get('/api/post/' + postId + '/vote').success(function(response) {
+                $scope.vote = response;
+            });
+        }
+        function postVote(val) {
+            return function() {
+                // Assume success and edit UI immediately
+                if($scope.vote) {
+                    diff = val - $scope.vote.value;
+                    $scope.vote.value = val;
+                } else {
+                    diff = val;
+                }
+                $scope.post.score += diff;
+                $http.post('/api/post/' + postId + '/vote', { val: val }).success(function(response) {
+                    $scope.vote = response;
+                });
+            };
+        }
+
+        $scope.upvote = postVote(1);
+        $scope.downvote = postVote(-1);
+        $scope.nullvote = postVote(0);
+
         // Let the owner delete this post
         $scope.deletePost = function(){
             if ($scope.owner){
@@ -51,4 +77,5 @@ angular.module("MainApp").controller('PostController', ['$scope', '$http', 'user
               refreshComments();
             });
         };
+
 }]);
