@@ -13,11 +13,11 @@
             <span ng-show="!post.link_post"><i class="fa fa-pencil"></i></span>
             <span class="text-capitalize" ng-bind="post.title"></span>
         </h1>
-        <h4 ng-show="owner">You Posted This</h4>
-        <h4 ng-show="!owner">
-          Posted By: <a href="#/profile/{{poster.username}}">{{poster.username}}</a>
+        <h4>
+          <span ng-show="owner">You Posted This</span>
+          <span ng-show="!owner">Posted By: <a href="#/profile/{{poster.username}}">{{poster.username}}</a></span>
+          <small>{{post.created | date:'short'}} </small>
         </h4>
-        {{post.created | date:'short'}}
     </div>
 
     <div ng-show="owner">
@@ -41,7 +41,16 @@
     <div>
         <h3>All Comments</h3>
         <div class="commentArea">
-          {{comments}}
+          <div class="noComments" ng-show="!comments.length">
+            No one has commented yet...
+          </div>
+          <div class="comment" ng-repeat="comment in comments">
+            <div class="commentHead">
+              <span user-name user-id="comment.user"></span>
+              <small>{{comment.created | date:'short'}}</small>
+            </div>
+            {{comment.text}}
+          </div>
         </div>
     </div>
 
