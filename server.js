@@ -16,8 +16,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Logging module
-// var morgan = require('morgan');
-// app.use(morgan('combined'));
+var morgan = require('morgan');
+app.use(morgan('combined'));
 
 // We're going to need this to parse JSOn
 var bodyParser = require('body-parser');
