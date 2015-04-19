@@ -69,3 +69,12 @@ footer {
   text-align: center;
   font-style: italic;
 }
+
+.jumbotron .page-header {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.jumbotron .page-header h1 {
+  margin-top: 0px;
+}
