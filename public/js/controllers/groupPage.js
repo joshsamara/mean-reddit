@@ -24,11 +24,6 @@ angular.module("MainApp").controller('GroupController', ['$scope', '$http', '$ro
             $scope.group = response;
             $scope.owner = user && (user._id === $scope.group.owner);
             userCheck(user);
-            if (!$scope.owner){
-                $http.get("/api/user/" + $scope.group.owner).success(function(response){
-                    $scope.groupOwner = response;
-                });
-            }
         }).error(function(response){
             $location.path('/404');
         });

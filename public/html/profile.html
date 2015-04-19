@@ -13,9 +13,10 @@
       <p>Login to to friend this user.</p>
     </div>
     <div ng-show="user && !profileOwner">
-      <p>Controls:</p>
-      <button class="btn btn-success" ng-click="friend()" ng-show="!friended">Add Friend <i class="fa fa-plus-circle"></i></button>
-      <button class="btn btn-warning" ng-click="unfriend()" ng-show="friended">Remove Friend <i class="fa fa-minus-circle"></i></button>
+      <p>Controls:
+        <button class="btn btn-success" ng-click="friend()" ng-show="!friended">Add Friend <i class="fa fa-plus-circle"></i></button>
+        <button class="btn btn-warning" ng-click="unfriend()" ng-show="friended">Remove Friend <i class="fa fa-minus-circle"></i></button>
+      </p>
     </div>
   </div>
 

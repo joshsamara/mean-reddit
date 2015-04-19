@@ -19,5 +19,11 @@ footer {
 .customHeader {
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
+}
 
+.content {
+  border: 1px solid #aaa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
 }

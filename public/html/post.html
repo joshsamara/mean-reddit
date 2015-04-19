@@ -21,13 +21,14 @@
     </div>
 
     <div ng-show="owner">
-        <p>Controls:</p>
-        <button class="btn btn-danger" ng-click="deletePost()">Delete <i class="fa fa-trash"></i></button>
+        <p>Controls:
+            <button class="btn btn-danger" ng-click="deletePost()">Delete <i class="fa fa-trash"></i></button>
+        </p>
     </div>
 
-    <div>
+    <div class="content">
         <h2 ng-show="post.link_post">Link: <a ng-href="{{post.link}}"><span class="lead" ng-bind="post.link">N/A</span></a></h2>
-    <p ng-show="!post.link_post"><span ng-bind="post.text"></span><p>
+        <p ng-show="!post.link_post"><span ng-bind="post.text"></span><p>
     </div>
   </div>
 </div>
