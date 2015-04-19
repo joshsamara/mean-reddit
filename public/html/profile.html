@@ -20,6 +20,7 @@
     </div>
   </div>
 
+  <!-- Subs -->
   <div ng-show="profileOwner">
     <h2><i class="fa fa-bars"></i> Your Subscriptions:</h2>
     <div ng-show="!subscribed.length">
@@ -38,6 +39,7 @@
     </ul>
   </div>
 
+  <!-- Friends -->
   <div ng-show="profileOwner">
     <h2><i class="fa fa-users"></i> Your Friends:</h2>
     <div ng-show="!friends.length">
@@ -54,5 +56,45 @@
         </a>
       </span>
     </ul>
+  </div>
+
+  <!-- Posts -->
+  <div>
+    <h2><i class="fa fa-file-text"></i> <span ng-show="profileOwner">Your </span>Posts:</h2>
+    <div ng-show="!posts.length">
+      <div class="well lead">
+        <p>No Posts Found!</p>
+      </div>
+    </div>
+    <ul class="list-group" ng-show="posts.length">
+      <span ng-repeat="post in posts">
+          <li class="list-group-item lead text-capitalize">
+          <div>
+            <a ng-href="#/post/{{post._id}}">{{post.title}}</a><small> (<span group-name group-id="post.group"></span>)<small>
+          </div>
+          <div>
+            {{post.created | date:'short'}}
+          </div>
+          </li>
+      </span>
+    </ul>
+  </div>
+
+  <!-- Comments -->
+  <div>
+    <h2><i class="fa fa-comments"></i> <span ng-show="profileOwner">Your </span>Comments:</h2>
+    <div class="commentArea">
+      <div class="noComments" ng-show="!comments.length">
+        No Comments Found!
+      </div>
+      <div class="comment" ng-repeat="comment in comments">
+        <div class="commentHead">
+          Comment on post: <span post-title post-id="comment.post"></span>
+          <small>{{comment.created | date:'short'}}</small>
+        </div>
+        {{comment.text}}
+        <div></div>
+      </div>
+    </div>
   </div>
 </div>

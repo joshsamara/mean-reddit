@@ -41,4 +41,30 @@ module.exports = function(app, models, passport){
     // Friend users
     app.get('/api/user/:id/friend', base.auth, base.addToUser(User, 'friends'));
     app.get('/api/user/:id/unfriend', base.auth, base.removeFromUser(User, 'friends'));
+
+
+    // Get these resources bound to a user
+    app.get('/api/user/:id/comment', function(req, res){
+      var id = req.params.id;
+      models.Comment.find( { user: id }, function(err, data){
+        if (err) {
+          res.sendStatus(400);
+          res.send(err);
+        } else {
+          res.json(data);
+        }
+      });
+    });
+
+    app.get('/api/user/:id/post', function(req, res){
+      var id = req.params.id;
+      models.Post.find( { user: id }, function(err, data){
+        if (err) {
+          res.sendStatus(400);
+          res.send(err);
+        } else {
+          res.json(data);
+        }
+      });
+    });
 };

@@ -92,3 +92,20 @@ app.directive("groupName", ['$http', function($http) {
     }
   };
 }]);
+
+
+app.directive("postTitle", ['$http', function($http) {
+  return {
+    template: "<a ng-href='#/post/{{postId}}'><span>{{title}}</span></a>",
+    scope: {
+      postId: "="
+    },
+    link: function(scope) {
+      $http.get("/api/post/" + scope.postId).then(function(result) {
+        scope.title = result.data.title;
+      }, function(err) {
+        scope.title = "unknown";
+      });
+    }
+  };
+}]);

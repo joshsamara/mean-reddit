@@ -6,16 +6,29 @@ angular.module("MainApp").controller('ProfileController', ['$scope', '$http', '$
         var loggedUser = userFactory.get();
 
         // Go fetch things we want to display
-        function setSubscribed(user){
+        function getSubscribed(user){
             $http.post("/api/group/many", { ids: loggedUser.groups }).success(function(response){
                 $scope.subscribed = response;
             });
         }
 
-        function setFriends(user){
+        function getFriends(user){
             $http.post("/api/user/many", { ids: loggedUser.friends }).success(function(response){
                 $scope.friends = response;
             });
+        }
+
+        function getPosts(userId){
+            $http.get("/api/user/" + userId + "/post").success(function(response){
+                console.log("LOADEd");
+                $scope.posts = response;
+          });
+        }
+
+        function getComments(userId){
+            $http.get("/api/user/" + userId + "/comment").success(function(response){
+                $scope.comments = response;
+          });
         }
 
         // Make sure this user exists
@@ -23,11 +36,14 @@ angular.module("MainApp").controller('ProfileController', ['$scope', '$http', '$
             $scope.profileUser = response;
             var userId = response._id;
 
+            // Now that we know this exists, get the resources to display
+            getPosts(userId);
+            getComments(userId);
             // Are we this user?
             $scope.profileOwner = loggedUser && (userId == loggedUser._id);
             if ($scope.profileOwner) {
-                setSubscribed(loggedUser);
-                setFriends(loggedUser);
+                getSubscribed(loggedUser);
+                getFriends(loggedUser);
             } else{
                 $scope.friended = loggedUser && (loggedUser.friends.indexOf(userId) != -1);
             }
@@ -35,21 +51,20 @@ angular.module("MainApp").controller('ProfileController', ['$scope', '$http', '$
             $location.path('/404');
         });
 
-
         function editFriendship(suffix, friended){
             return function() {
                 $http.get("/api/user/" + $scope.profileUser._id + "/" + suffix).success(function(response) {
                     loggedUser = response;
                     userFactory.set(loggedUser);
                     $scope.refreshUser();
-                    setSubscribed(loggedUser);
-                    setFriends(loggedUser);
+                    getSubscribed(loggedUser);
+                    getFriends(loggedUser);
                     $scope.friended = friended;
                 });
             };
         }
 
-        // Friend this person
+        // We can friend this person
         $scope.friend =  editFriendship("friend", true);
         $scope.unfriend =  editFriendship("unfriend", false);
 }]);
