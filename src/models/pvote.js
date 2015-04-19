@@ -8,4 +8,7 @@ var PVoteSchema = new Schema({
     value: { type: Number, required: true, default: 0}
 });
 
+// Only one vote per person!
+PVoteSchema.index({ user: 1, post: 1 }, { unique: true });
+
 module.exports = mongoose.model('PVote', PVoteSchema);
