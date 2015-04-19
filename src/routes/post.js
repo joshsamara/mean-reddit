@@ -25,4 +25,31 @@ module.exports = function(app, models){
             }
         });
     });
+
+    // Make a new comment (requires auth)
+    app.post('/api/post/:id/comment', base.auth, function(req, res){
+        var postId = req.params.id;
+        var text = req.body.text;
+        var userId = req.user._id;
+        newComment = models.Comment({ user: userId, post: postId, text: text});
+        newComment.save(function(err, data){
+            if (err) {
+                res.sendStatus(400);
+            } else {
+                res.json(data);
+            }
+        });
+    });
+
+    // Get all currently existing comments
+    app.get('/api/post/:id/comment', function(req, res){
+        var postId = req.params.id;
+        models.Comment.find({ post: postId }, function(err, data){
+            if (err){
+                res.sendStatus(404);
+            } else {
+                res.json(data);
+            }
+        });
+    });
 };

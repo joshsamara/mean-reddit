@@ -43,3 +43,9 @@ footer {
   border-radius: 10px;
   margin-top: 10px;
 }
+
+.commentArea {
+  min-height: 200px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}

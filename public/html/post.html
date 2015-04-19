@@ -31,4 +31,19 @@
         <p ng-show="!post.link_post"><span ng-bind="post.text"></span><p>
     </div>
   </div>
+
+    <div ng-show="user" class="form-group" ng-show="postForm.link_post != 'true'">
+      <h3>New Comment</h3>
+      <textarea class="form-control" rows="5" ng-model="commentText" placeholder="Enter comment text"></textarea>
+      <button class="btn btn-success top10" ng-click="addComment(commentText)">Add Comment <i class="fa fa-plus-circle"></i></button>
+    </div>
+
+    <div>
+        <h3>All Comments</h3>
+        <div class="commentArea">
+          {{comments}}
+        </div>
+    </div>
+
+
 </div>
