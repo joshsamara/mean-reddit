@@ -1,6 +1,5 @@
 <!-- Used for both the group and main pages -->
-<div class="container">
-
+<div class="container" ng-show="!badgroup">
   <a ng-if="group" ng-href="#/">
     <i class="fa fa-angle-double-left fa"></i> Back to Front page
   </a>
@@ -63,4 +62,11 @@
             </tbody>
         </table>
     </div>
+</div>
+<div class="container well" ng-show="badgroup">
+    <div class="page-header">
+        <h1>Group does not exist</h1>
+    </div>
+    <p>If you were subscribed to this group and it's been deleted, you have been unsubscribed.</p>
+    <p><a href="#/">Click Here</a> to return to the home page.
 </div>

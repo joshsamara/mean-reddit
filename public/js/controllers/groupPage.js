@@ -19,27 +19,6 @@ angular.module("MainApp").controller('GroupController', ['$scope', '$http', '$ro
             }
         }
 
-        // Get our group
-        $http.get("/api/group/name/" + groupName).success(function(response) {
-            $scope.group = response;
-            $scope.owner = user && (user._id === $scope.group.owner);
-            userCheck(user);
-        }).error(function(response){
-            $location.path('/404');
-        });
-
-        // Get our posts
-        $http.get("api/group/" + groupName + "/posts").success(function(response){
-            $scope.posts = response;
-        });
-
-        $scope.deleteGroup = function(){
-            if ($scope.owner){
-                $http.delete("/api/group/" + $scope.group._id).success(function(response) {
-                    $location.path('/');
-                });
-            }
-        };
 
         function editSubscription(suffix){
             return function() {
@@ -55,4 +34,29 @@ angular.module("MainApp").controller('GroupController', ['$scope', '$http', '$ro
         // Subscribe to this group
         $scope.subscribe = editSubscription("subscribe");
         $scope.unsubscribe = editSubscription("unsubscribe");
+        $scope.nameUnsubscribe = editSubscription("name/unsubscribe");
+
+        // Get our group
+        $http.get("/api/group/name/" + groupName).success(function(response) {
+            $scope.group = response;
+            $scope.owner = user && (user._id === $scope.group.owner);
+            userCheck(user);
+            $scope.badgroup = false;
+        }).error(function(response){
+            $scope.badgroup = true;
+        });
+
+        // Get our posts
+        $http.get("api/group/" + groupName + "/posts").success(function(response){
+            $scope.posts = response;
+        });
+
+        $scope.deleteGroup = function(){
+            if ($scope.owner){
+                $http.delete("/api/group/" + $scope.group._id).success(function(response) {
+                    $location.path('/');
+                });
+            }
+        };
+
 }]);
