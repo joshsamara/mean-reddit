@@ -2,8 +2,12 @@
 // NOTE: Login is a parent to the other controllers.
 // If any other controller changes the currently logged in uers, they must run:
 // $scope.refreshUser()
-angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'userFactory', '$route',
-    function($scope, $http, userFactory, $route) {
+angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'userFactory', '$route', '$location',
+    function($scope, $http, userFactory, $route, $location) {
+
+        $scope.testPath = function(path){
+            return $location.path() == path;
+        }
 
         // Immediately check if we're already logged in
         $scope.refreshUser = function(force, callback){
