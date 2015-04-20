@@ -80,6 +80,8 @@ Clone the Repository:
 You'll need to install node. [See the website
 here for instructions](https://nodejs.org/download/).
 
+You'll also need to install and start [mongodb](http://docs.mongodb.org/).
+
 Install dependencies:
 
     $ npm install
