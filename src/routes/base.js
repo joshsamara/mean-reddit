@@ -14,6 +14,7 @@ function callback(res, failure, success) {
     };
 }
 
+base.callback = callback;
 // Get everything
 base.getall = function(model){
     return function(req, res){
@@ -147,6 +148,18 @@ base.auth = function(req, res, next) {
     } else {
         next();
     }
+};
+
+base.oneRandom = function(model) {
+    return function(req, res) {
+        model.findOneRandom(callback(res, 404));
+    };
+};
+
+base.oneNew = function(model) {
+    return function(req, res) {
+        model.findOne().sort({ created: -1 }).exec(base.callback(res, 404));
+    };
 };
 
 module.exports = base;

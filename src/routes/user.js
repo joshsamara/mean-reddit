@@ -7,6 +7,11 @@ module.exports = function(app, models, passport){
     app.get('/api/user/:id', base.getone(User));
     app.post('/api/user/many', base.getmany(User));
     app.delete('/api/user/:id', base.delete(User));
+
+    // Discovery posts
+    app.get('/api/user/discover/random', base.oneRandom(User));
+    app.get('/api/user/discover/new', base.oneNew(User));
+
     // Find by name
     app.get('/api/user/name/:name', base.getByName(User, 'username'));
 

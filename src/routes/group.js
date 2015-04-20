@@ -24,6 +24,14 @@ module.exports = function(app, models){
     app.post('/api/group/many', base.getmany(Group));
     app.get('/api/group/:id', base.getone(Group));
     app.delete('/api/group/:id', base.delete(Group));
+
+
+    // Discover routes
+    app.get('/api/group/discover/random', base.oneRandom(Group));
+    app.get('/api/group/discover/new', base.oneNew(Group));
+
+
+    // Other Routes
     app.get('/api/group/:name/posts', function(req, res){
         var name = req.params.name;
         Group.findOne({ name: name }, function(err, data){

@@ -8,6 +8,13 @@ module.exports = function(app, models) {
     app.get('/api/post/:id', base.getone(Post));
     app.delete('/api/post/:id', base.delete(Post));
 
+    // Discovery posts
+    app.get('/api/post/discover/random', base.oneRandom(Post));
+    app.get('/api/post/discover/top', function(req, res) {
+        Post.findOne().sort({ score: -1 }).exec(base.callback(res, 404));
+    });
+    app.get('/api/post/discover/new', base.oneNew(Post));
+
     // Gets top posts. Filters by subscribed if we have subscribed
     app.get('/api/post/many/top', function(req, res) {
       if (req.user && req.user.groups){

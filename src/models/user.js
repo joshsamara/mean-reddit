@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var random = require('mongoose-simple-random');
 // User passport-local-mongose for slightly cleaner
 // and more secure User management
 var passportLocalMongoose = require('passport-local-mongoose');
@@ -14,5 +15,6 @@ var UserSchema = new Schema({
 });
 
 UserSchema.plugin(passportLocalMongoose);
+UserSchema.plugin(random);
 
 module.exports = mongoose.model('User', UserSchema);

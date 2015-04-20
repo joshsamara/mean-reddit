@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var random = require('mongoose-simple-random');
 var Schema = mongoose.Schema;
 
 var PostSchema = new Schema({
@@ -30,4 +31,7 @@ PostSchema.pre('save', function(next) {
   }
   next();
 });
+
+PostSchema.plugin(random);
+
 module.exports = mongoose.model('Post', PostSchema);
