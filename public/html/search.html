@@ -1,14 +1,22 @@
 <div class="container">
-    <h1>Results for search: "{{term}}"</h1>
-    <div class="well">
-      <label>Enter text to update search results:</label>
-      <input class="form-control"
-      type="text"
-      placeholder="Enter text to search"
-      ng-model="term"
-      ng-model-options="{ debounce: 300 }"
-      ng-change="searchAll()"/>
+    <a ng-if="group" ng-href="#/">
+        <i class="fa fa-angle-double-left fa"></i> Back to Front page
+    </a>
+    <div class="jumbotron">
+        <div class="page-header">
+            <h1>Search Readit!</h1>
+        </div>
+      <div class="well">
+        <label>Enter text to update search results:</label>
+        <input class="form-control"
+        type="text"
+        placeholder="Enter text to search"
+        ng-model="term"
+        ng-model-options="{ debounce: 300 }"
+        ng-change="searchAll()"/>
+      </div>
     </div>
+    <h1>Results for search: "{{term}}"</h1>
     <div class="row text-center">
         <div class="col-md-4 well">
             <h2 class="customHeader"><i class="fa fa-file-text"></i> Posts</h2>

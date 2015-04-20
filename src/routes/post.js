@@ -11,7 +11,7 @@ module.exports = function(app, models) {
     // Discovery posts
     app.get('/api/post/discover/random', base.oneRandom(Post));
     app.get('/api/post/discover/top', function(req, res) {
-        Post.findOne().sort({ score: -1 }).exec(base.callback(res, 404));
+        Post.find().sort({ score: -1 }).limit(3).exec(base.callback(res, 404));
     });
     app.get('/api/post/discover/new', base.oneNew(Post));
 

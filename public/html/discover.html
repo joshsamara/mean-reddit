@@ -1,0 +1,83 @@
+<div class="container">
+    <a ng-if="group" ng-href="#/">
+        <i class="fa fa-angle-double-left fa"></i> Back to Front page
+    </a>
+    <div class="jumbotron">
+        <div class="page-header">
+            <h1>Discover Readit!</h1>
+        </div>
+        <div>
+            <p>Discover top, new, or random parts of the site!</p>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="customHeader"><i class="fa fa-file-text"></i> Top Posts</h2>
+        <div class="text-center">
+            <div class="col-md-4 well" ng-repeat="post in top_posts">
+                <div class="searchResult">
+                    <p><a ng-href="#/post/{{post._id}}"><span class="lead">{{post.title}}</span></a></p>
+                    <div><small>Group:</small> <span group-name group-id="post.group"></span></div>
+                    <div><small>Submitter:</small> <span user-name user-id="post.user"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="customHeader"><i class="fa fa-plus-square"></i> New</h2>
+        <div class="text-center">
+            <div ng-if="newest.post" class="col-md-4 well discoverResult">
+                <div class="searchResult">
+                    <p class="discoverItem"><i class="fa fa-file-text"></i> Post</p>
+                    <p><a ng-href="#/post/{{newest.post._id}}"><span class="lead">{{newest.post.title}}</span></a></p>
+                    <div><small>Group:</small> <span group-name group-id="newest.post.group"></span></div>
+                    <div><small>Submitter:</small> <span user-name user-id="newest.post.user"></span></div>
+                </div>
+            </div>
+            <div ng-if="newest.group" class="col-md-4 well discoverResult">
+                <div class="searchResult">
+                    <p class="discoverItem"><i class="fa fa-users"></i> Group</p>
+                    <p><a ng-href="#/group/{{newest.group.name}}"><span class="lead">{{newest.group.name}}</span></a></p>
+                    <div><small>Owner:</small> <span user-name user-id="newest.group.owner"></span></div>
+                </div>
+            </div>
+            <div ng-if="newest.user" class="col-md-4 well discoverResult">
+                <div class="searchResult">
+                    <p class="discoverItem"><i class="fa fa-user"></i> User</p>
+                    <p><a ng-href="#/profile/{{newest.user.username}}"><span class="lead">{{newest.user.username}}</span></a></p>
+                </div>
+            </div>
+            <div class="searchResult lead" ng-show="newestEmpty">
+                No new items found.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="customHeader"><i class="fa fa-question"></i> Random</h2>
+        <div class="text-center">
+            <div ng-if="random.post" class="col-md-4 well discoverResult">
+                <div class="searchResult">
+                    <p class="discoverItem"><i class="fa fa-file-text"></i> Post</p>
+                    <p><a ng-href="#/post/{{random.post._id}}"><span class="lead">{{random.post.title}}</span></a></p>
+                    <div><small>Group:</small> <span group-name group-id="random.post.group"></span></div>
+                    <div><small>Submitter:</small> <span user-name user-id="random.post.user"></span></div>
+                </div>
+            </div>
+            <div ng-if="random.group" class="col-md-4 well discoverResult">
+                <div class="searchResult">
+                    <p class="discoverItem"><i class="fa fa-users"></i> Group</p>
+                    <p><a ng-href="#/group/{{random.group.name}}"><span class="lead">{{random.group.name}}</span></a></p>
+                    <div><small>Owner:</small> <span user-name user-id="random.group.owner"></span></div>
+                </div>
+            </div>
+            <div ng-if="random.user" class="col-md-4 well discoverResult">
+                <div class="searchResult">
+                    <p class="discoverItem"><i class="fa fa-user"></i> User</p>
+                    <p><a ng-href="#/profile/{{random.user.username}}"><span class="lead">{{random.user.username}}</span></a></p>
+                </div>
+            </div>
+            <div class="searchResult lead" ng-show="randomEmpty">
+                No random items found.
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@ angular.module("MainApp").controller('LoginController', ['$scope', '$http', 'use
 
         $scope.testPath = function(path){
             return $location.path() == path;
-        }
+        };
 
         // Immediately check if we're already logged in
         $scope.refreshUser = function(force, callback){

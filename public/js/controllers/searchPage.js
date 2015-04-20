@@ -1,4 +1,4 @@
-// Controller for the group page
+// Controller for the search page
 angular.module("MainApp").controller('SearchController', ['$scope', '$http', '$routeParams',
     function($scope, $http, $routeParams){
         $scope.term = $routeParams.term || '';

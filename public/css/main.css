@@ -25,6 +25,7 @@ footer {
 }
 
 .searchResult {
+  overflow: hidden;
   border: 1px solid #666;
   background-color: #ddd;
   border-radius: 10px;
@@ -90,4 +91,13 @@ footer {
   padding: 5px;
   border-radius: 5px;
   font-size: 20px;
+}
+
+.discoverItem {
+  margin-bottom: 5px;
+  background-color: #bbb;
+}
+
+.discoverResult {
+  height: 150px;
 }
