@@ -9,6 +9,7 @@
             <h1 ng-show="!group"><i class="fa fa-home"></i> Front Page!</h1>
             <p ng-show="owner">You own this group.</p>
             <p ng-if="group" ng-show="group && !owner"><span user-name user-id="group.owner"></span> owns this group.</p>
+            <p ng-show="group && can_subscribe">Subscribe to this group to get its content on your front page.</p>
         </div>
         <div ng-show="!user">
             <p>Login to to subscribe, post, and more!</p>
