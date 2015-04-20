@@ -4,6 +4,7 @@
     </a>
   <div class="jumbotron">
     <div class="page-header">
+        <span class="score pull-right">{{score}}pts</span>
       <h1 ng-show="profileOwner"><i class="fa fa-user"></i> Your Profile!</h1>
       <h1 ng-show="!profileOwner"><i class="fa fa-user"></i> {{profileUser.username}}'s Profile</h1>
       <span ng-show="!profileOwner">

@@ -21,6 +21,10 @@ angular.module("MainApp").controller('ProfileController', ['$scope', '$http', '$
         function getPosts(userId){
             $http.get("/api/user/" + userId + "/post").success(function(response){
                 $scope.posts = response;
+                $scope.score = 0;
+                for (var i=0; i<$scope.posts.length; i++) {
+                    $scope.score += $scope.posts[i].score;
+                }
           });
         }
 
