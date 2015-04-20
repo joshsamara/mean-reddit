@@ -73,6 +73,7 @@
       <span ng-repeat="post in posts">
           <li class="list-group-item lead text-capitalize">
           <div>
+            <span class="pull-right"><small>{{post.score}}pts</small></span>
             <a ng-href="#/post/{{post._id}}">{{post.title}}</a><small> (<span group-name group-id="post.group"></span>)<small>
           </div>
           <div>
