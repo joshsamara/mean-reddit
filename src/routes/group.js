@@ -39,12 +39,11 @@ module.exports = function(app, models){
                 res.status(400);
                 res.json({"message": "Unable to find group"});
             } else {
-                models.Post.find({ 'group': data._id }, function(err, data){
+                models.Post.find({ 'group': data._id }).sort({ score: -1 }).exec(function(err, data){
                     if (err){
                         res.status(400);
                         res.json(err);
                     } else {
-                        data = data.sort([['score', 'descending']]);
                         res.json(data);
                     }
                 });
