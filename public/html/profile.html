@@ -1,8 +1,11 @@
 <div class="container">
+    <a ng-href="#/">
+        <i class="fa fa-angle-double-left fa"></i> Back to Front page
+    </a>
   <div class="jumbotron">
     <div class="page-header">
-      <h1 ng-show="profileOwner">Your Profile!</h1>
-      <h1 ng-show="!profileOwner">{{profileUser.username}}'s Profile</h1>
+      <h1 ng-show="profileOwner"><i class="fa fa-user"></i> Your Profile!</h1>
+      <h1 ng-show="!profileOwner"><i class="fa fa-user"></i> {{profileUser.username}}'s Profile</h1>
       <span ng-show="!profileOwner">
         <p ng-show="friended">You've friended this user!</p>
         <p ng-show="!friended">You haven't friended this user.</p>
