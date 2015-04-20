@@ -109,3 +109,13 @@ app.directive("postTitle", ['$http', function($http) {
     }
   };
 }]);
+
+app.run( function($rootScope, $location) {
+   $rootScope.$watch(function() {
+      return $location.path();
+    },
+    function(a){
+      $rootScope.previousPage = $rootScope.currentPage;
+      $rootScope.currentPage = a;
+    });
+});
