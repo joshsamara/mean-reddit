@@ -41,7 +41,7 @@ The site has the following main pages:
 * **Post Page:** View a post. From here you can upvote or downvote a post to
   increase or decrease its score. You can also comment on the post (All actions
   but viewing require login).
-* **Searh Page:** Search the site for Posts, Groups, or Users.
+* **Search Page:** Search the site for Posts, Groups, or Users.
 * **Discover Page:** Find top rated posts, new content, or random content.
   Useful for new users.
 * **Profile Page:** A user's profile page. If this isn't your profile page, it
