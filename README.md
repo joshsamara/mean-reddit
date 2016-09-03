@@ -9,7 +9,7 @@
 * [Picture](#picture)
 
 ## What is this?
-A Reddit-like application made using the MEAN stack for my CS4550 class. It's
+A Reddit-like application made using the MEAN stack for my Capstone at NEU. It's
 definitely not a 1-to-1 imitiation of Reddit, but it has the core features.
 Also, it refers to itself as "Readit" within the application (Basically just to
 show that it's a knockoff of Reddit)
