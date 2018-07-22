@@ -1,5 +1,13 @@
 # Mean Reddit v1.0.0
 
+# ! Deprecation Warning !
+
+This repo is pretty outdated and isn't easy to setup.
+
+I haven't taken the time to fix it or get it up and running BUT if
+you're interested in how it worked there's an incredibly long demo
+video I made on the Demo section
+
 ## Table of Contents
 * [What is this?](#what-is-this-)
 * [Demo](#demo)
@@ -15,7 +23,8 @@ Also, it refers to itself as "Readit" within the application (Basically just to
 show that it's a knockoff of Reddit)
 
 ## Demo
-[Here you go.](http://cs4550final-joshsamara.rhcloud.com/) Hosted on OpenShift.
+
+[Check It](https://www.youtube.com/watch?v=k_ftQd9CsB4)
 
 ## Feature Overview
 So here's an overview of the features of this site.
